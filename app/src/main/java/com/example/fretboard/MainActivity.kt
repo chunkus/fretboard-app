@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         val noteList = mutableListOf<String>()
         val sresourceList = mutableListOf<Int>()
 
-        for (i in 1 until 4){
+        for (i in 1 until 73){
             val buttonID: String = "button$i"
             buttonList.add(buttonID)
 
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
             val resourceID: Int = this.resources.getIdentifier(buttonList[i-1], "id", this.packageName)
             resourceList.add(resourceID)
-            val sresourceID: Int = this.resources.getIdentifier(noteList[i-1], "id", this.packageName)
+            val sresourceID: Int = this.resources.getIdentifier(noteList[i-1], "raw", this.packageName)
             sresourceList.add(sresourceID)
 
 
