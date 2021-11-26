@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.GridLayout
 import android.widget.Toast
+import androidx.annotation.RawRes
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,35 +15,33 @@ class MainActivity : AppCompatActivity() {
 
         val buttonList = mutableListOf<String>()
         val resourceList = mutableListOf<Int>()
+        val noteList = mutableListOf<String>()
+        val sresourceList = mutableListOf<Int>()
 
-//        val g : GridLayout = findViewById(R.id.GridLayout1)
-//
-//        for (j in 4 until 78){
-//            val newNoteButton: Button = Button(this)
-//            newNoteButton.text="button$j"
-//            g.addView(newNoteButton)
-//            println("button $j made")
-//        }
-
-        for (i in 1 until 72){
+        for (i in 1 until 4){
             val buttonID: String = "button$i"
             buttonList.add(buttonID)
 
+            val noteID: String = "note$i"
+            noteList.add(noteID)
+
             val resourceID: Int = this.resources.getIdentifier(buttonList[i-1], "id", this.packageName)
             resourceList.add(resourceID)
-            println("resourceID pointer $i made")
+            val sresourceID: Int = this.resources.getIdentifier(noteList[i-1], "id", this.packageName)
+            sresourceList.add(sresourceID)
+
 
             val noteButton: Button = findViewById(resourceList[i-1])
-            println("resourceID pointer $i made")
-            setListen(noteButton, i)
+
+            setListen(noteButton,sresourceID, i)
         }
 
     }
-    fun setListen(nButton: Button, n: Int){
+    fun setListen(nButton: Button, sRaw: Int, n: Int){
         nButton.setOnClickListener {
             val toast = Toast.makeText(this, "You played the $n note", Toast.LENGTH_SHORT)
             toast.show()
-            val cSound : MediaPlayer = MediaPlayer.create(this, R.raw.soundbite)
+            val cSound : MediaPlayer = MediaPlayer.create(this, sRaw)
             cSound.start()
         }
     }
