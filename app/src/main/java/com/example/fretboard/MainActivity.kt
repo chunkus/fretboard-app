@@ -20,19 +20,16 @@ class MainActivity : AppCompatActivity() {
 
         for (i in 1 until 73){
             val buttonID: String = "button$i"
-            buttonList.add(buttonID)
-
             val noteID: String = "note$i"
-            noteList.add(noteID)
 
+            buttonList.add(buttonID)
+            noteList.add(noteID)
             val resourceID: Int = this.resources.getIdentifier(buttonList[i-1], "id", this.packageName)
             resourceList.add(resourceID)
             val sresourceID: Int = this.resources.getIdentifier(noteList[i-1], "raw", this.packageName)
             sresourceList.add(sresourceID)
 
-
             val noteButton: Button = findViewById(resourceList[i-1])
-
             setListen(noteButton,sresourceID, i)
         }
 
